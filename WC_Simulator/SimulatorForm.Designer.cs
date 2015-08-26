@@ -31,7 +31,7 @@ namespace WC_Simulator
         private void InitializeComponent()
         {
             this.numTeamsLabel = new System.Windows.Forms.Label();
-            this.continueButton = new System.Windows.Forms.Button();
+            this.getTeamsContinueButton = new System.Windows.Forms.Button();
             this.numTeamsDropdown = new System.Windows.Forms.ComboBox();
             this.getTeamLabel1 = new System.Windows.Forms.Label();
             this.getTeamTextbox1 = new System.Windows.Forms.TextBox();
@@ -381,17 +381,17 @@ namespace WC_Simulator
             this.numTeamsLabel.TabIndex = 0;
             this.numTeamsLabel.Text = "How many teams are in the group?";
             // 
-            // continueButton
+            // getTeamsContinueButton
             // 
-            this.continueButton.AutoSize = true;
-            this.continueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.continueButton.Location = new System.Drawing.Point(445, 537);
-            this.continueButton.Name = "continueButton";
-            this.continueButton.Size = new System.Drawing.Size(100, 34);
-            this.continueButton.TabIndex = 14;
-            this.continueButton.Text = "Continue";
-            this.continueButton.UseVisualStyleBackColor = true;
-            this.continueButton.Click += new System.EventHandler(this.continueButton_Click);
+            this.getTeamsContinueButton.AutoSize = true;
+            this.getTeamsContinueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.getTeamsContinueButton.Location = new System.Drawing.Point(445, 537);
+            this.getTeamsContinueButton.Name = "getTeamsContinueButton";
+            this.getTeamsContinueButton.Size = new System.Drawing.Size(100, 34);
+            this.getTeamsContinueButton.TabIndex = 14;
+            this.getTeamsContinueButton.Text = "Continue";
+            this.getTeamsContinueButton.UseVisualStyleBackColor = true;
+            this.getTeamsContinueButton.Click += new System.EventHandler(this.continueButton_Click);
             // 
             // numTeamsDropdown
             // 
@@ -406,7 +406,7 @@ namespace WC_Simulator
             this.numTeamsDropdown.Name = "numTeamsDropdown";
             this.numTeamsDropdown.Size = new System.Drawing.Size(40, 28);
             this.numTeamsDropdown.TabIndex = 1;
-            this.numTeamsDropdown.SelectedIndexChanged += new System.EventHandler(this.numTeamsChanged);
+            this.numTeamsDropdown.SelectedIndexChanged += new System.EventHandler(this.numTeamsDropdown_SelectedIndexChanged);
             // 
             // getTeamLabel1
             // 
@@ -426,7 +426,7 @@ namespace WC_Simulator
             this.getTeamTextbox1.Name = "getTeamTextbox1";
             this.getTeamTextbox1.Size = new System.Drawing.Size(194, 26);
             this.getTeamTextbox1.TabIndex = 2;
-            this.getTeamTextbox1.Enter += new System.EventHandler(this.textboxSelectAll);
+            this.getTeamTextbox1.Enter += new System.EventHandler(this.textbox_Enter);
             // 
             // getTeamTextbox2
             // 
@@ -436,7 +436,7 @@ namespace WC_Simulator
             this.getTeamTextbox2.Name = "getTeamTextbox2";
             this.getTeamTextbox2.Size = new System.Drawing.Size(194, 26);
             this.getTeamTextbox2.TabIndex = 4;
-            this.getTeamTextbox2.Enter += new System.EventHandler(this.textboxSelectAll);
+            this.getTeamTextbox2.Enter += new System.EventHandler(this.textbox_Enter);
             // 
             // getTeamTextbox3
             // 
@@ -446,7 +446,7 @@ namespace WC_Simulator
             this.getTeamTextbox3.Name = "getTeamTextbox3";
             this.getTeamTextbox3.Size = new System.Drawing.Size(194, 26);
             this.getTeamTextbox3.TabIndex = 6;
-            this.getTeamTextbox3.Enter += new System.EventHandler(this.textboxSelectAll);
+            this.getTeamTextbox3.Enter += new System.EventHandler(this.textbox_Enter);
             // 
             // getTeamTextbox4
             // 
@@ -456,7 +456,7 @@ namespace WC_Simulator
             this.getTeamTextbox4.Name = "getTeamTextbox4";
             this.getTeamTextbox4.Size = new System.Drawing.Size(194, 26);
             this.getTeamTextbox4.TabIndex = 8;
-            this.getTeamTextbox4.Enter += new System.EventHandler(this.textboxSelectAll);
+            this.getTeamTextbox4.Enter += new System.EventHandler(this.textbox_Enter);
             // 
             // getTeamTextbox5
             // 
@@ -466,7 +466,7 @@ namespace WC_Simulator
             this.getTeamTextbox5.Name = "getTeamTextbox5";
             this.getTeamTextbox5.Size = new System.Drawing.Size(194, 26);
             this.getTeamTextbox5.TabIndex = 10;
-            this.getTeamTextbox5.Enter += new System.EventHandler(this.textboxSelectAll);
+            this.getTeamTextbox5.Enter += new System.EventHandler(this.textbox_Enter);
             // 
             // getTeamTextbox6
             // 
@@ -476,7 +476,7 @@ namespace WC_Simulator
             this.getTeamTextbox6.Name = "getTeamTextbox6";
             this.getTeamTextbox6.Size = new System.Drawing.Size(194, 26);
             this.getTeamTextbox6.TabIndex = 12;
-            this.getTeamTextbox6.Enter += new System.EventHandler(this.textboxSelectAll);
+            this.getTeamTextbox6.Enter += new System.EventHandler(this.textbox_Enter);
             // 
             // tabControl1
             // 
@@ -500,7 +500,7 @@ namespace WC_Simulator
             this.getTeamsTab.Controls.Add(this.getTeamPanel1);
             this.getTeamsTab.Controls.Add(this.numTeamsLabel);
             this.getTeamsTab.Controls.Add(this.numTeamsDropdown);
-            this.getTeamsTab.Controls.Add(this.continueButton);
+            this.getTeamsTab.Controls.Add(this.getTeamsContinueButton);
             this.getTeamsTab.Location = new System.Drawing.Point(4, 22);
             this.getTeamsTab.Name = "getTeamsTab";
             this.getTeamsTab.Padding = new System.Windows.Forms.Padding(3);
@@ -847,7 +847,7 @@ namespace WC_Simulator
             this.minutesUpDown64.Name = "minutesUpDown64";
             this.minutesUpDown64.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown64.TabIndex = 2;
-            this.minutesUpDown64.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown64.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expUpDown64
             // 
@@ -861,7 +861,7 @@ namespace WC_Simulator
             this.expUpDown64.Name = "expUpDown64";
             this.expUpDown64.Size = new System.Drawing.Size(50, 23);
             this.expUpDown64.TabIndex = 1;
-            this.expUpDown64.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown64.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel64
             // 
@@ -885,7 +885,7 @@ namespace WC_Simulator
             this.aiUpDown64.Name = "aiUpDown64";
             this.aiUpDown64.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown64.TabIndex = 0;
-            this.aiUpDown64.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown64.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel64
             // 
@@ -944,7 +944,7 @@ namespace WC_Simulator
             this.minutesUpDown63.Name = "minutesUpDown63";
             this.minutesUpDown63.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown63.TabIndex = 2;
-            this.minutesUpDown63.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown63.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expUpDown63
             // 
@@ -958,7 +958,7 @@ namespace WC_Simulator
             this.expUpDown63.Name = "expUpDown63";
             this.expUpDown63.Size = new System.Drawing.Size(50, 23);
             this.expUpDown63.TabIndex = 1;
-            this.expUpDown63.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown63.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel63
             // 
@@ -982,7 +982,7 @@ namespace WC_Simulator
             this.aiUpDown63.Name = "aiUpDown63";
             this.aiUpDown63.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown63.TabIndex = 0;
-            this.aiUpDown63.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown63.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel63
             // 
@@ -1031,7 +1031,7 @@ namespace WC_Simulator
             this.minutesUpDown62.Name = "minutesUpDown62";
             this.minutesUpDown62.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown62.TabIndex = 2;
-            this.minutesUpDown62.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown62.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel62
             // 
@@ -1055,7 +1055,7 @@ namespace WC_Simulator
             this.expUpDown62.Name = "expUpDown62";
             this.expUpDown62.Size = new System.Drawing.Size(50, 23);
             this.expUpDown62.TabIndex = 1;
-            this.expUpDown62.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown62.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel62
             // 
@@ -1079,7 +1079,7 @@ namespace WC_Simulator
             this.aiUpDown62.Name = "aiUpDown62";
             this.aiUpDown62.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown62.TabIndex = 0;
-            this.aiUpDown62.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown62.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel62
             // 
@@ -1129,7 +1129,7 @@ namespace WC_Simulator
             this.minutesUpDown61.Name = "minutesUpDown61";
             this.minutesUpDown61.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown61.TabIndex = 2;
-            this.minutesUpDown61.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown61.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel61
             // 
@@ -1153,7 +1153,7 @@ namespace WC_Simulator
             this.expUpDown61.Name = "expUpDown61";
             this.expUpDown61.Size = new System.Drawing.Size(50, 23);
             this.expUpDown61.TabIndex = 1;
-            this.expUpDown61.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown61.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel61
             // 
@@ -1177,7 +1177,7 @@ namespace WC_Simulator
             this.aiUpDown61.Name = "aiUpDown61";
             this.aiUpDown61.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown61.TabIndex = 0;
-            this.aiUpDown61.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown61.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel61
             // 
@@ -1236,7 +1236,7 @@ namespace WC_Simulator
             this.minutesUpDown54.Name = "minutesUpDown54";
             this.minutesUpDown54.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown54.TabIndex = 2;
-            this.minutesUpDown54.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown54.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel54
             // 
@@ -1260,7 +1260,7 @@ namespace WC_Simulator
             this.expUpDown54.Name = "expUpDown54";
             this.expUpDown54.Size = new System.Drawing.Size(50, 23);
             this.expUpDown54.TabIndex = 1;
-            this.expUpDown54.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown54.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel54
             // 
@@ -1284,7 +1284,7 @@ namespace WC_Simulator
             this.aiUpDown54.Name = "aiUpDown54";
             this.aiUpDown54.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown54.TabIndex = 0;
-            this.aiUpDown54.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown54.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel54
             // 
@@ -1333,7 +1333,7 @@ namespace WC_Simulator
             this.minutesUpDown53.Name = "minutesUpDown53";
             this.minutesUpDown53.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown53.TabIndex = 2;
-            this.minutesUpDown53.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown53.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel53
             // 
@@ -1357,7 +1357,7 @@ namespace WC_Simulator
             this.expUpDown53.Name = "expUpDown53";
             this.expUpDown53.Size = new System.Drawing.Size(50, 23);
             this.expUpDown53.TabIndex = 1;
-            this.expUpDown53.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown53.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel53
             // 
@@ -1381,7 +1381,7 @@ namespace WC_Simulator
             this.aiUpDown53.Name = "aiUpDown53";
             this.aiUpDown53.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown53.TabIndex = 0;
-            this.aiUpDown53.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown53.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel53
             // 
@@ -1430,7 +1430,7 @@ namespace WC_Simulator
             this.minutesUpDown52.Name = "minutesUpDown52";
             this.minutesUpDown52.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown52.TabIndex = 2;
-            this.minutesUpDown52.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown52.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel52
             // 
@@ -1454,7 +1454,7 @@ namespace WC_Simulator
             this.expUpDown52.Name = "expUpDown52";
             this.expUpDown52.Size = new System.Drawing.Size(50, 23);
             this.expUpDown52.TabIndex = 1;
-            this.expUpDown52.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown52.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel52
             // 
@@ -1478,7 +1478,7 @@ namespace WC_Simulator
             this.aiUpDown52.Name = "aiUpDown52";
             this.aiUpDown52.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown52.TabIndex = 0;
-            this.aiUpDown52.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown52.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel52
             // 
@@ -1528,7 +1528,7 @@ namespace WC_Simulator
             this.minutesUpDown51.Name = "minutesUpDown51";
             this.minutesUpDown51.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown51.TabIndex = 2;
-            this.minutesUpDown51.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown51.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel51
             // 
@@ -1552,7 +1552,7 @@ namespace WC_Simulator
             this.expUpDown51.Name = "expUpDown51";
             this.expUpDown51.Size = new System.Drawing.Size(50, 23);
             this.expUpDown51.TabIndex = 1;
-            this.expUpDown51.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown51.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel51
             // 
@@ -1576,7 +1576,7 @@ namespace WC_Simulator
             this.aiUpDown51.Name = "aiUpDown51";
             this.aiUpDown51.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown51.TabIndex = 0;
-            this.aiUpDown51.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown51.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel51
             // 
@@ -1635,7 +1635,7 @@ namespace WC_Simulator
             this.minutesUpDown44.Name = "minutesUpDown44";
             this.minutesUpDown44.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown44.TabIndex = 2;
-            this.minutesUpDown44.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown44.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel44
             // 
@@ -1659,7 +1659,7 @@ namespace WC_Simulator
             this.expUpDown44.Name = "expUpDown44";
             this.expUpDown44.Size = new System.Drawing.Size(50, 23);
             this.expUpDown44.TabIndex = 1;
-            this.expUpDown44.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown44.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel44
             // 
@@ -1683,7 +1683,7 @@ namespace WC_Simulator
             this.aiUpDown44.Name = "aiUpDown44";
             this.aiUpDown44.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown44.TabIndex = 0;
-            this.aiUpDown44.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown44.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel44
             // 
@@ -1732,7 +1732,7 @@ namespace WC_Simulator
             this.minutesUpDown43.Name = "minutesUpDown43";
             this.minutesUpDown43.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown43.TabIndex = 2;
-            this.minutesUpDown43.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown43.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel43
             // 
@@ -1756,7 +1756,7 @@ namespace WC_Simulator
             this.expUpDown43.Name = "expUpDown43";
             this.expUpDown43.Size = new System.Drawing.Size(50, 23);
             this.expUpDown43.TabIndex = 1;
-            this.expUpDown43.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown43.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel43
             // 
@@ -1780,7 +1780,7 @@ namespace WC_Simulator
             this.aiUpDown43.Name = "aiUpDown43";
             this.aiUpDown43.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown43.TabIndex = 0;
-            this.aiUpDown43.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown43.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel43
             // 
@@ -1829,7 +1829,7 @@ namespace WC_Simulator
             this.minutesUpDown42.Name = "minutesUpDown42";
             this.minutesUpDown42.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown42.TabIndex = 2;
-            this.minutesUpDown42.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown42.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel42
             // 
@@ -1853,7 +1853,7 @@ namespace WC_Simulator
             this.expUpDown42.Name = "expUpDown42";
             this.expUpDown42.Size = new System.Drawing.Size(50, 23);
             this.expUpDown42.TabIndex = 1;
-            this.expUpDown42.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown42.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel42
             // 
@@ -1877,7 +1877,7 @@ namespace WC_Simulator
             this.aiUpDown42.Name = "aiUpDown42";
             this.aiUpDown42.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown42.TabIndex = 0;
-            this.aiUpDown42.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown42.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel42
             // 
@@ -1927,7 +1927,7 @@ namespace WC_Simulator
             this.minutesUpDown41.Name = "minutesUpDown41";
             this.minutesUpDown41.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown41.TabIndex = 2;
-            this.minutesUpDown41.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown41.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel41
             // 
@@ -1951,7 +1951,7 @@ namespace WC_Simulator
             this.expUpDown41.Name = "expUpDown41";
             this.expUpDown41.Size = new System.Drawing.Size(50, 23);
             this.expUpDown41.TabIndex = 1;
-            this.expUpDown41.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown41.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel41
             // 
@@ -1975,7 +1975,7 @@ namespace WC_Simulator
             this.aiUpDown41.Name = "aiUpDown41";
             this.aiUpDown41.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown41.TabIndex = 0;
-            this.aiUpDown41.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown41.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel41
             // 
@@ -2034,7 +2034,7 @@ namespace WC_Simulator
             this.minutesUpDown34.Name = "minutesUpDown34";
             this.minutesUpDown34.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown34.TabIndex = 2;
-            this.minutesUpDown34.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown34.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel34
             // 
@@ -2058,7 +2058,7 @@ namespace WC_Simulator
             this.expUpDown34.Name = "expUpDown34";
             this.expUpDown34.Size = new System.Drawing.Size(50, 23);
             this.expUpDown34.TabIndex = 1;
-            this.expUpDown34.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown34.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel34
             // 
@@ -2082,7 +2082,7 @@ namespace WC_Simulator
             this.aiUpDown34.Name = "aiUpDown34";
             this.aiUpDown34.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown34.TabIndex = 0;
-            this.aiUpDown34.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown34.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel34
             // 
@@ -2131,7 +2131,7 @@ namespace WC_Simulator
             this.minutesUpDown33.Name = "minutesUpDown33";
             this.minutesUpDown33.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown33.TabIndex = 2;
-            this.minutesUpDown33.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown33.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel33
             // 
@@ -2155,7 +2155,7 @@ namespace WC_Simulator
             this.expUpDown33.Name = "expUpDown33";
             this.expUpDown33.Size = new System.Drawing.Size(50, 23);
             this.expUpDown33.TabIndex = 1;
-            this.expUpDown33.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown33.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel33
             // 
@@ -2179,7 +2179,7 @@ namespace WC_Simulator
             this.aiUpDown33.Name = "aiUpDown33";
             this.aiUpDown33.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown33.TabIndex = 0;
-            this.aiUpDown33.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown33.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel33
             // 
@@ -2228,7 +2228,7 @@ namespace WC_Simulator
             this.minutesUpDown32.Name = "minutesUpDown32";
             this.minutesUpDown32.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown32.TabIndex = 2;
-            this.minutesUpDown32.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown32.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel32
             // 
@@ -2252,7 +2252,7 @@ namespace WC_Simulator
             this.expUpDown32.Name = "expUpDown32";
             this.expUpDown32.Size = new System.Drawing.Size(50, 23);
             this.expUpDown32.TabIndex = 1;
-            this.expUpDown32.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown32.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel32
             // 
@@ -2276,7 +2276,7 @@ namespace WC_Simulator
             this.aiUpDown32.Name = "aiUpDown32";
             this.aiUpDown32.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown32.TabIndex = 0;
-            this.aiUpDown32.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown32.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel32
             // 
@@ -2326,7 +2326,7 @@ namespace WC_Simulator
             this.minutesUpDown31.Name = "minutesUpDown31";
             this.minutesUpDown31.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown31.TabIndex = 2;
-            this.minutesUpDown31.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown31.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel31
             // 
@@ -2350,7 +2350,7 @@ namespace WC_Simulator
             this.expUpDown31.Name = "expUpDown31";
             this.expUpDown31.Size = new System.Drawing.Size(50, 23);
             this.expUpDown31.TabIndex = 1;
-            this.expUpDown31.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown31.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel31
             // 
@@ -2374,7 +2374,7 @@ namespace WC_Simulator
             this.aiUpDown31.Name = "aiUpDown31";
             this.aiUpDown31.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown31.TabIndex = 0;
-            this.aiUpDown31.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown31.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel31
             // 
@@ -2433,7 +2433,7 @@ namespace WC_Simulator
             this.minutesUpDown24.Name = "minutesUpDown24";
             this.minutesUpDown24.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown24.TabIndex = 2;
-            this.minutesUpDown24.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown24.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel24
             // 
@@ -2457,7 +2457,7 @@ namespace WC_Simulator
             this.expUpDown24.Name = "expUpDown24";
             this.expUpDown24.Size = new System.Drawing.Size(50, 23);
             this.expUpDown24.TabIndex = 1;
-            this.expUpDown24.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown24.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel24
             // 
@@ -2481,7 +2481,7 @@ namespace WC_Simulator
             this.aiUpDown24.Name = "aiUpDown24";
             this.aiUpDown24.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown24.TabIndex = 0;
-            this.aiUpDown24.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown24.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel24
             // 
@@ -2529,7 +2529,7 @@ namespace WC_Simulator
             this.minutesUpDown23.Name = "minutesUpDown23";
             this.minutesUpDown23.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown23.TabIndex = 2;
-            this.minutesUpDown23.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown23.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel23
             // 
@@ -2553,7 +2553,7 @@ namespace WC_Simulator
             this.expUpDown23.Name = "expUpDown23";
             this.expUpDown23.Size = new System.Drawing.Size(50, 23);
             this.expUpDown23.TabIndex = 1;
-            this.expUpDown23.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown23.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel23
             // 
@@ -2577,7 +2577,7 @@ namespace WC_Simulator
             this.aiUpDown23.Name = "aiUpDown23";
             this.aiUpDown23.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown23.TabIndex = 0;
-            this.aiUpDown23.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown23.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel23
             // 
@@ -2625,7 +2625,7 @@ namespace WC_Simulator
             this.minutesUpDown22.Name = "minutesUpDown22";
             this.minutesUpDown22.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown22.TabIndex = 2;
-            this.minutesUpDown22.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown22.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel22
             // 
@@ -2649,7 +2649,7 @@ namespace WC_Simulator
             this.expUpDown22.Name = "expUpDown22";
             this.expUpDown22.Size = new System.Drawing.Size(50, 23);
             this.expUpDown22.TabIndex = 1;
-            this.expUpDown22.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown22.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel22
             // 
@@ -2673,7 +2673,7 @@ namespace WC_Simulator
             this.aiUpDown22.Name = "aiUpDown22";
             this.aiUpDown22.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown22.TabIndex = 0;
-            this.aiUpDown22.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown22.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel22
             // 
@@ -2722,7 +2722,7 @@ namespace WC_Simulator
             this.minutesUpDown21.Name = "minutesUpDown21";
             this.minutesUpDown21.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown21.TabIndex = 2;
-            this.minutesUpDown21.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown21.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel21
             // 
@@ -2746,7 +2746,7 @@ namespace WC_Simulator
             this.expUpDown21.Name = "expUpDown21";
             this.expUpDown21.Size = new System.Drawing.Size(50, 23);
             this.expUpDown21.TabIndex = 1;
-            this.expUpDown21.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown21.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel21
             // 
@@ -2770,7 +2770,7 @@ namespace WC_Simulator
             this.aiUpDown21.Name = "aiUpDown21";
             this.aiUpDown21.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown21.TabIndex = 0;
-            this.aiUpDown21.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown21.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel21
             // 
@@ -2829,7 +2829,7 @@ namespace WC_Simulator
             this.minutesUpDown14.Name = "minutesUpDown14";
             this.minutesUpDown14.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown14.TabIndex = 2;
-            this.minutesUpDown14.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown14.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel14
             // 
@@ -2853,7 +2853,7 @@ namespace WC_Simulator
             this.expUpDown14.Name = "expUpDown14";
             this.expUpDown14.Size = new System.Drawing.Size(50, 23);
             this.expUpDown14.TabIndex = 1;
-            this.expUpDown14.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown14.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel14
             // 
@@ -2877,7 +2877,7 @@ namespace WC_Simulator
             this.aiUpDown14.Name = "aiUpDown14";
             this.aiUpDown14.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown14.TabIndex = 0;
-            this.aiUpDown14.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown14.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel14
             // 
@@ -2925,7 +2925,7 @@ namespace WC_Simulator
             this.minutesUpDown13.Name = "minutesUpDown13";
             this.minutesUpDown13.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown13.TabIndex = 2;
-            this.minutesUpDown13.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown13.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel13
             // 
@@ -2949,7 +2949,7 @@ namespace WC_Simulator
             this.expUpDown13.Name = "expUpDown13";
             this.expUpDown13.Size = new System.Drawing.Size(50, 23);
             this.expUpDown13.TabIndex = 1;
-            this.expUpDown13.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown13.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel13
             // 
@@ -2973,7 +2973,7 @@ namespace WC_Simulator
             this.aiUpDown13.Name = "aiUpDown13";
             this.aiUpDown13.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown13.TabIndex = 0;
-            this.aiUpDown13.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown13.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel13
             // 
@@ -3021,7 +3021,7 @@ namespace WC_Simulator
             this.minutesUpDown12.Name = "minutesUpDown12";
             this.minutesUpDown12.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown12.TabIndex = 2;
-            this.minutesUpDown12.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown12.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel12
             // 
@@ -3045,7 +3045,7 @@ namespace WC_Simulator
             this.expUpDown12.Name = "expUpDown12";
             this.expUpDown12.Size = new System.Drawing.Size(50, 23);
             this.expUpDown12.TabIndex = 1;
-            this.expUpDown12.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown12.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // expLabel12
             // 
@@ -3069,7 +3069,7 @@ namespace WC_Simulator
             this.aiUpDown12.Name = "aiUpDown12";
             this.aiUpDown12.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown12.TabIndex = 0;
-            this.aiUpDown12.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown12.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // aiLabel12
             // 
@@ -3108,7 +3108,7 @@ namespace WC_Simulator
             this.aiUpDown11.Name = "aiUpDown11";
             this.aiUpDown11.Size = new System.Drawing.Size(50, 23);
             this.aiUpDown11.TabIndex = 0;
-            this.aiUpDown11.Enter += new System.EventHandler(this.updownSelectAll);
+            this.aiUpDown11.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // getLineTeamLabel1
             // 
@@ -3142,7 +3142,7 @@ namespace WC_Simulator
             this.expUpDown11.Name = "expUpDown11";
             this.expUpDown11.Size = new System.Drawing.Size(50, 23);
             this.expUpDown11.TabIndex = 1;
-            this.expUpDown11.Enter += new System.EventHandler(this.updownSelectAll);
+            this.expUpDown11.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesUpDown11
             // 
@@ -3156,7 +3156,7 @@ namespace WC_Simulator
             this.minutesUpDown11.Name = "minutesUpDown11";
             this.minutesUpDown11.Size = new System.Drawing.Size(50, 23);
             this.minutesUpDown11.TabIndex = 2;
-            this.minutesUpDown11.Enter += new System.EventHandler(this.updownSelectAll);
+            this.minutesUpDown11.Enter += new System.EventHandler(this.updown_Enter);
             // 
             // minutesLabel11
             // 
@@ -3190,7 +3190,7 @@ namespace WC_Simulator
             // 
             // SimulatorForm
             // 
-            this.AcceptButton = this.continueButton;
+            this.AcceptButton = this.getTeamsContinueButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 729);
@@ -3341,7 +3341,7 @@ namespace WC_Simulator
         #endregion
 
         private System.Windows.Forms.Label numTeamsLabel;
-        private System.Windows.Forms.Button continueButton;
+        private System.Windows.Forms.Button getTeamsContinueButton;
         private System.Windows.Forms.ComboBox numTeamsDropdown;
         private System.Windows.Forms.Label getTeamLabel1;
         private System.Windows.Forms.TextBox getTeamTextbox1;
