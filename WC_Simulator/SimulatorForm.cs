@@ -1,29 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WC_Simulator
 {
     public partial class SimulatorForm : Form
     {
-        List<string> teams = new List<string>(); // team names
-        List<int> numLines = new List<int>(); // number of lines for each team
-        List<List<List<int>>> teamInfo = new List<List<List<int>>>(); // ai, exp, minutes of each line for each team
+        int numSimulations = 1000000;
+        string[] teams; // team names
+        int[] numLinesPerTeam; // number of lines for each team
+        List<List<double[]>> teamInfo = new List<List<double[]>>(); // ai, exp, minutes of each line for each team
+        int[,] places;
+        RunSimulator simulator;
+        ProgressForm progressForm;
 
         public SimulatorForm()
         {
             InitializeComponent();
             numTeamsDropdown.Text = "2";
             tabControl1.TabPages.Remove(getLineInfoTab);
+            tabControl1.TabPages.Remove(gamesPlayedTab);
+            tabControl1.TabPages.Remove(resultsTab);
         }
 
-        private void continueButton_Click(object sender, EventArgs e)
+        private void getTeamsContinueButton_Click(object sender, EventArgs e)
         {
             // verify each team name and number of lines selected
             int numTeams = int.Parse(numTeamsDropdown.Text);
@@ -46,16 +48,19 @@ namespace WC_Simulator
                     return;
             }
 
+            teams = new string[numTeams];
+            numLinesPerTeam = new int[numTeams];
+
             // setup labels and textboxes on next tab only after verifying all data
             // filled in because user has option to change data after error message
             // note: lines 1-3 of teams 1 and 2 have visible set to true by default,
             // all other lines have visible set to false by default
             int numLinesTeam1 = int.Parse(numLinesDropdown1.Text);
             int numLinesTeam2 = int.Parse(numLinesDropdown2.Text);
-            teams.Add(getTeamTextbox1.Text);
-            teams.Add(getTeamTextbox2.Text);
-            numLines.Add(numLinesTeam1);
-            numLines.Add(numLinesTeam2);
+            teams[0] = getTeamTextbox1.Text;
+            teams[1] = getTeamTextbox2.Text;
+            numLinesPerTeam[0] = numLinesTeam1;
+            numLinesPerTeam[1] = numLinesTeam2;
             getLineTeamLabel1.Text = getTeamTextbox1.Text;
             getLineTeamLabel2.Text = getTeamTextbox2.Text;
             if (numLinesTeam1 == 4)
@@ -66,10 +71,10 @@ namespace WC_Simulator
             {
                 int numLinesTeam3 = int.Parse(numLinesDropdown3.Text);
                 int numLinesTeam4 = int.Parse(numLinesDropdown4.Text);
-                teams.Add(getTeamTextbox3.Text);
-                teams.Add(getTeamTextbox4.Text);
-                numLines.Add(numLinesTeam3);
-                numLines.Add(numLinesTeam4);
+                teams[2] = getTeamTextbox3.Text;
+                teams[3] = getTeamTextbox4.Text;
+                numLinesPerTeam[2] = numLinesTeam3;
+                numLinesPerTeam[3] = numLinesTeam4;
                 getLineTeamLabel3.Text = getTeamTextbox3.Text;
                 getLineTeamLabel4.Text = getTeamTextbox4.Text;
                 getLinePanel31.Visible = getLinePanel32.Visible = getLinePanel33.Visible = true;
@@ -83,10 +88,10 @@ namespace WC_Simulator
             {
                 int numLinesTeam5 = int.Parse(numLinesDropdown5.Text);
                 int numLinesTeam6 = int.Parse(numLinesDropdown6.Text);
-                teams.Add(getTeamTextbox5.Text);
-                teams.Add(getTeamTextbox6.Text);
-                numLines.Add(numLinesTeam5);
-                numLines.Add(numLinesTeam6);
+                teams[4] = getTeamTextbox5.Text;
+                teams[5] = getTeamTextbox6.Text;
+                numLinesPerTeam[4] = numLinesTeam5;
+                numLinesPerTeam[5] = numLinesTeam6;
                 getLineTeamLabel5.Text = getTeamTextbox5.Text;
                 getLineTeamLabel6.Text = getTeamTextbox6.Text;
                 getLinePanel51.Visible = getLinePanel52.Visible = getLinePanel53.Visible = true;
@@ -101,6 +106,20 @@ namespace WC_Simulator
             tabControl1.TabPages.Add(getLineInfoTab);
             tabControl1.TabPages.Remove(getTeamsTab);
             aiUpDown11.Select();
+            this.AcceptButton = getLineContinueButton;
+        }
+
+        private Boolean verifyTeamDataNotEmpty(TextBox textbox, ComboBox dropdown, int teamNumber)
+        {
+            if (string.IsNullOrWhiteSpace(textbox.Text) || (string.IsNullOrEmpty(dropdown.Text)))
+            {
+                MessageBox.Show("Team " + teamNumber + " is missing team name or number of lines",
+                                "Team " + teamNumber + " Invalid",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return true;
+            }
+            return false;
         }
 
         private void numTeamsDropdown_SelectedIndexChanged(object sender, EventArgs e)
@@ -130,17 +149,119 @@ namespace WC_Simulator
             updown.Select(0, updown.Value.ToString().Length);
         }
 
-        private Boolean verifyTeamDataNotEmpty(TextBox textbox, ComboBox dropdown, int teamNumber)
+        private void getLineContinueButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textbox.Text) || (string.IsNullOrEmpty(dropdown.Text)))
+            List<Panel> getLinePanels = getLineInfoTab.Controls.OfType<Panel>().ToList<Panel>();
+
+            // store ai, exp, and min for easy access later and
+            // verify minutes for each team add up to 60
+            for (int teamNumber = 0; teamNumber < numLinesPerTeam.Length; teamNumber++)
             {
-                MessageBox.Show("Team " + teamNumber + " is missing team name or number of lines",
-                                "Team " + teamNumber + " Invalid",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return true;
+                List<double[]> teamInfo = new List<double[]>();
+                int teamMinutes = 0;
+
+                for (int lineNumber = 0; lineNumber < numLinesPerTeam[teamNumber]; lineNumber++)
+                {
+                    Panel linePanel = getLinePanels[(teamNumber * 4) + lineNumber];
+                    List<NumericUpDown> updowns = linePanel.Controls.OfType<NumericUpDown>().ToList<NumericUpDown>();
+                    int lineAI = int.Parse(updowns[0].Value.ToString());
+                    int lineExp = int.Parse(updowns[1].Value.ToString());
+                    int lineMin = int.Parse(updowns[2].Value.ToString());
+                    teamMinutes += lineMin;
+                    teamInfo.Add(new double[] { lineAI, lineExp, lineMin });
+                }
+
+                if (teamMinutes != 60)
+                {
+                    MessageBox.Show("Line minutes for " + teams[teamNumber] + " add up to " + teamMinutes + ", but should equal 60",
+                                    teams[teamNumber] + " - Invalid Minutes",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    this.teamInfo = new List<List<double[]>>();
+                    return;
+                }
+
+                this.teamInfo.Add(teamInfo);
             }
-            return false;
+
+            // if 2 teams selected, show results
+            // otherwise, allow for games already played to be input
+            //if (teams.Length == 2)
+            //{
+                tabControl1.TabPages.Add(resultsTab);
+                tabControl1.TabPages.Remove(getLineInfoTab);
+            if (!simBackgroundWorker.IsBusy)
+            {
+                progressForm = new ProgressForm();
+                progressForm.Show();
+                simBackgroundWorker.RunWorkerAsync();
+            }
+            //}
+            //else
+            //{
+            //    tabControl1.TabPages.Add(gamesPlayedTab);
+            //    tabControl1.TabPages.Remove(getLineInfoTab);
+            //}
+        }
+
+        private void rerunSimsButton_Click(object sender, EventArgs e)
+        {
+            if (!simBackgroundWorker.IsBusy)
+            {
+                progressForm = new ProgressForm();
+                progressForm.Show();
+                simBackgroundWorker.RunWorkerAsync();
+            }
+        }
+
+        private void Simulate(BackgroundWorker worker)
+        {
+            simulator = new RunSimulator(teams, numLinesPerTeam, teamInfo, worker);
+            if (teams.Length == 2)
+                places = simulator.SimulateTwoTeams();
+            else
+                places = simulator.SimulateGroup();
+        }
+
+        private void simBackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            Simulate(worker);
+        }
+
+        private void simBackgroundWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            progressForm.Message = "Simulation progress: " + e.ProgressPercentage.ToString() + "%";
+            progressForm.ProgressValue = e.ProgressPercentage;
+        }
+
+        private void simBackgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            if (teams.Length == 2)
+            {
+                resultsLabel1.Text = teams[0] + " wins " + places[0, 0] + " of " + numSimulations + " times (" + (places[0, 0] / numSimulations * 100.0) + "%)";
+                resultsLabel2.Text = teams[1] + " wins " + places[1, 0] + " of " + numSimulations + " times (" + (places[1, 0] / numSimulations * 100.0) + "%)";
+            }
+            else
+            {
+                int labelNum = 0;
+                for (int i = 0; i < teams.Length; i++)
+                {
+                    resultsLabelPanel.Controls[labelNum].Text = teams[i];
+                    labelNum++;
+                    for (int place = 0; place < teams.Length; place++)
+                    {
+                        double placeFinishes = places[i, place];
+                        double percent = placeFinishes / numSimulations * 100;
+                        resultsLabelPanel.Controls[labelNum].Text = "\tPlace " + (place + 1) + " - " + placeFinishes + " of " + numSimulations + " times (" + percent + "%)";
+                        labelNum++;
+                    }
+                    // if 4 teams, after two teams start adding results to 2nd column
+                    if (i == 1 && teams.Length == 4)
+                        labelNum = 21;
+                }
+            }
+            progressForm.Close();
         }
     }
 }
