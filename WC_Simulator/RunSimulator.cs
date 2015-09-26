@@ -83,10 +83,8 @@ namespace WC_Simulator
             return wins;
         }
 
-        public int[,] SimulateGroup()
+        public int[,] SimulateGroup(List<Game> gamesPlayed)
         {
-            List<Game> gamesPlayed = new List<Game>();
-
             double[] aiExpTotals = new double[teams.Length];
             int[] teamNumbers = new int[teams.Length];
 

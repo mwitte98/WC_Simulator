@@ -12,6 +12,7 @@ namespace WC_Simulator
         string[] teams; // team names
         int[] numLinesPerTeam; // number of lines for each team
         List<List<double[]>> teamInfo = new List<List<double[]>>(); // ai, exp, minutes of each line for each team
+        List<Game> gamesPlayed = new List<Game>();
         int[,] places;
         RunSimulator simulator;
         ProgressForm progressForm;
@@ -24,6 +25,8 @@ namespace WC_Simulator
             tabControl1.TabPages.Remove(gamesPlayedTab);
             tabControl1.TabPages.Remove(resultsTab);
         }
+
+        /***** CLICK EVENTS *****/
 
         private void getTeamsContinueButton_Click(object sender, EventArgs e)
         {
@@ -109,46 +112,6 @@ namespace WC_Simulator
             this.AcceptButton = getLineContinueButton;
         }
 
-        private Boolean verifyTeamDataNotEmpty(TextBox textbox, ComboBox dropdown, int teamNumber)
-        {
-            if (string.IsNullOrWhiteSpace(textbox.Text) || (string.IsNullOrEmpty(dropdown.Text)))
-            {
-                MessageBox.Show("Team " + teamNumber + " is missing team name or number of lines",
-                                "Team " + teamNumber + " Invalid",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return true;
-            }
-            return false;
-        }
-
-        private void numTeamsDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int numTeams = int.Parse(numTeamsDropdown.Text);
-            if (numTeams == 2)
-                getTeamPanel3.Visible = getTeamPanel4.Visible = getTeamPanel5.Visible = getTeamPanel6.Visible = false;
-            else if (numTeams == 4)
-            {
-                getTeamPanel3.Visible = getTeamPanel4.Visible = true;
-                getTeamPanel5.Visible = getTeamPanel6.Visible = false;
-            }
-            else
-                getTeamPanel3.Visible = getTeamPanel4.Visible = getTeamPanel5.Visible = getTeamPanel6.Visible = true;
-            getTeamTextbox1.Select();
-        }
-
-        private void textbox_Enter(object sender, EventArgs e)
-        {
-            TextBox textbox = sender as TextBox;
-            textbox.SelectAll();
-        }
-
-        private void updown_Enter(object sender, EventArgs e)
-        {
-            NumericUpDown updown = sender as NumericUpDown;
-            updown.Select(0, updown.Value.ToString().Length);
-        }
-
         private void getLineContinueButton_Click(object sender, EventArgs e)
         {
             List<Panel> getLinePanels = getLineInfoTab.Controls.OfType<Panel>().ToList<Panel>();
@@ -186,22 +149,81 @@ namespace WC_Simulator
 
             // if 2 teams selected, show results
             // otherwise, allow for games already played to be input
-            //if (teams.Length == 2)
-            //{
+            if (teams.Length == 2)
+            {
                 tabControl1.TabPages.Add(resultsTab);
                 tabControl1.TabPages.Remove(getLineInfoTab);
+                this.AcceptButton = rerunSimsButton;
+                if (!simBackgroundWorker.IsBusy)
+                {
+                    progressForm = new ProgressForm();
+                    progressForm.Show();
+                    simBackgroundWorker.RunWorkerAsync();
+                }
+            }
+            else
+            {
+                tabControl1.TabPages.Add(gamesPlayedTab);
+                tabControl1.TabPages.Remove(getLineInfoTab);
+                gamesPlayedTeam1Goals1.Select();
+                this.AcceptButton = gamesPlayedContinueButton;
+
+                List<Panel> gamesPlayedPanels = gamesPlayedTab.Controls.OfType<Panel>().ToList<Panel>();
+                int matchupNum = 0;
+                for (int team1 = 0; team1 < teams.Length; team1++)
+                {
+                    for (int team2 = team1 + 1; team2 < teams.Length; team2++)
+                    {
+                        Panel panel = gamesPlayedPanels[matchupNum];
+                        panel.Visible = true;
+                        List<Label> labels = panel.Controls.OfType<Label>().ToList<Label>();
+                        labels[0].Text = teams[team1];
+                        labels[1].Text = teams[team2];
+                        matchupNum++;
+                    }
+                }
+            }
+        }
+
+        private void gamesPlayedContinueButton_Click(object sender, EventArgs e)
+        {
+            gamesPlayed = new List<Game>();
+            List<Panel> gamesPlayedPanels = gamesPlayedTab.Controls.OfType<Panel>().ToList<Panel>();
+            int matchupNum = 0;
+            for (int team1 = 0; team1 < teams.Length; team1++)
+            {
+                for (int team2 = team1 + 1; team2 < teams.Length; team2++)
+                {
+                    Panel panel = gamesPlayedPanels[matchupNum];
+                    List<NumericUpDown> updowns = panel.Controls.OfType<NumericUpDown>().ToList<NumericUpDown>();
+                    int goals1 = int.Parse(updowns[0].Value.ToString());
+                    int goals2 = int.Parse(updowns[1].Value.ToString());
+                    if (goals1 != 0 || goals2 != 0)
+                    {
+                        if (goals1 == goals2)
+                        {
+                            MessageBox.Show(teams[team1] + " v. " + teams[team2] + " - The number of goals cannot be equal for both teams",
+                                        "Invalid Number of Goals",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                            gamesPlayed = new List<Game>();
+                            return;
+                        }
+                        else
+                            gamesPlayed.Add(new Game(team1, team2, goals1, goals2));
+                    }
+                    matchupNum++;
+                }
+            }
+            tabControl1.TabPages.Add(resultsTab);
+            tabControl1.TabPages.Remove(gamesPlayedTab);
+            this.AcceptButton = rerunSimsButton;
             if (!simBackgroundWorker.IsBusy)
             {
                 progressForm = new ProgressForm();
                 progressForm.Show();
                 simBackgroundWorker.RunWorkerAsync();
             }
-            //}
-            //else
-            //{
-            //    tabControl1.TabPages.Add(gamesPlayedTab);
-            //    tabControl1.TabPages.Remove(getLineInfoTab);
-            //}
         }
 
         private void rerunSimsButton_Click(object sender, EventArgs e)
@@ -214,13 +236,41 @@ namespace WC_Simulator
             }
         }
 
-        private void Simulate(BackgroundWorker worker)
+        private void editGamesPlayedButton_Click(object sender, EventArgs e)
         {
-            simulator = new RunSimulator(teams, numLinesPerTeam, teamInfo, worker);
-            if (teams.Length == 2)
-                places = simulator.SimulateTwoTeams();
+            tabControl1.TabPages.Add(gamesPlayedTab);
+            tabControl1.TabPages.Remove(resultsTab);
+            gamesPlayedTeam1Goals1.Select();
+            this.AcceptButton = gamesPlayedContinueButton;
+        }
+
+        /***** OTHER EVENTS *****/
+
+        private void numTeamsDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int numTeams = int.Parse(numTeamsDropdown.Text);
+            if (numTeams == 2)
+                getTeamPanel3.Visible = getTeamPanel4.Visible = getTeamPanel5.Visible = getTeamPanel6.Visible = false;
+            else if (numTeams == 4)
+            {
+                getTeamPanel3.Visible = getTeamPanel4.Visible = true;
+                getTeamPanel5.Visible = getTeamPanel6.Visible = false;
+            }
             else
-                places = simulator.SimulateGroup();
+                getTeamPanel3.Visible = getTeamPanel4.Visible = getTeamPanel5.Visible = getTeamPanel6.Visible = true;
+            getTeamTextbox1.Select();
+        }
+
+        private void textbox_Enter(object sender, EventArgs e)
+        {
+            TextBox textbox = sender as TextBox;
+            textbox.SelectAll();
+        }
+
+        private void updown_Enter(object sender, EventArgs e)
+        {
+            NumericUpDown updown = sender as NumericUpDown;
+            updown.Select(0, updown.Value.ToString().Length);
         }
 
         private void simBackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -262,6 +312,30 @@ namespace WC_Simulator
                 }
             }
             progressForm.Close();
+        }
+
+        /***** HELPERS *****/
+
+        private Boolean verifyTeamDataNotEmpty(TextBox textbox, ComboBox dropdown, int teamNumber)
+        {
+            if (string.IsNullOrWhiteSpace(textbox.Text) || (string.IsNullOrEmpty(dropdown.Text)))
+            {
+                MessageBox.Show("Team " + teamNumber + " is missing team name or number of lines",
+                                "Team " + teamNumber + " Invalid",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return true;
+            }
+            return false;
+        }
+
+        private void Simulate(BackgroundWorker worker)
+        {
+            simulator = new RunSimulator(teams, numLinesPerTeam, teamInfo, worker);
+            if (teams.Length == 2)
+                places = simulator.SimulateTwoTeams();
+            else
+                places = simulator.SimulateGroup(gamesPlayed);
         }
     }
 }
