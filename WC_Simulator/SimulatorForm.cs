@@ -12,7 +12,8 @@ namespace WC_Simulator
         string[] teams; // team names
         int[] numLinesPerTeam; // number of lines for each team
         List<List<double[]>> teamInfo = new List<List<double[]>>(); // ai, exp, minutes of each line for each team
-        List<Game> gamesPlayed = new List<Game>();
+        List<Game> gamesPlayed = new List<Game>(); // games already played
+        List<string> mustWinList = new List<string>(); // if a team must win a matchup or either team can win
         int[,] places;
         RunSimulator simulator;
         ProgressForm progressForm;
@@ -154,6 +155,7 @@ namespace WC_Simulator
                 tabControl1.TabPages.Add(resultsTab);
                 tabControl1.TabPages.Remove(getLineInfoTab);
                 this.AcceptButton = rerunSimsButton;
+                editGamesPlayedButton.Visible = false;
                 if (!simBackgroundWorker.IsBusy)
                 {
                     progressForm = new ProgressForm();
@@ -179,6 +181,11 @@ namespace WC_Simulator
                         List<Label> labels = panel.Controls.OfType<Label>().ToList<Label>();
                         labels[0].Text = teams[team1];
                         labels[1].Text = teams[team2];
+                        ComboBox dropdown = panel.Controls.OfType<ComboBox>().ToList<ComboBox>()[0];
+                        dropdown.Items.Add("Neither");
+                        dropdown.Items.Add(teams[team1]);
+                        dropdown.Items.Add(teams[team2]);
+                        dropdown.Text = "Neither";
                         matchupNum++;
                     }
                 }
@@ -188,8 +195,12 @@ namespace WC_Simulator
         private void gamesPlayedContinueButton_Click(object sender, EventArgs e)
         {
             gamesPlayed = new List<Game>();
+            mustWinList = new List<string>();
             List<Panel> gamesPlayedPanels = gamesPlayedTab.Controls.OfType<Panel>().ToList<Panel>();
             int matchupNum = 0;
+
+            // if any games played are entered, verify goals are not equal and add to list.
+            // add the text of each must win dropdown to a list for use during simulation calculation
             for (int team1 = 0; team1 < teams.Length; team1++)
             {
                 for (int team2 = team1 + 1; team2 < teams.Length; team2++)
@@ -207,14 +218,19 @@ namespace WC_Simulator
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Error);
                             gamesPlayed = new List<Game>();
+                            mustWinList = new List<string>();
                             return;
                         }
                         else
                             gamesPlayed.Add(new Game(team1, team2, goals1, goals2));
                     }
+                    mustWinList.Add(panel.Controls.OfType<ComboBox>().ToList<ComboBox>()[0].Text);
                     matchupNum++;
                 }
             }
+
+            // move to next tab and run simulations, popping up a progress bar
+            // indicating how far along the simulation calculation is
             tabControl1.TabPages.Add(resultsTab);
             tabControl1.TabPages.Remove(gamesPlayedTab);
             this.AcceptButton = rerunSimsButton;
@@ -228,6 +244,7 @@ namespace WC_Simulator
 
         private void rerunSimsButton_Click(object sender, EventArgs e)
         {
+            // rerun the simulation calculation using all of the same data
             if (!simBackgroundWorker.IsBusy)
             {
                 progressForm = new ProgressForm();
@@ -238,6 +255,7 @@ namespace WC_Simulator
 
         private void editGamesPlayedButton_Click(object sender, EventArgs e)
         {
+            // move back to games played tab to allow user to make changes
             tabControl1.TabPages.Add(gamesPlayedTab);
             tabControl1.TabPages.Remove(resultsTab);
             gamesPlayedTeam1Goals1.Select();
@@ -248,6 +266,8 @@ namespace WC_Simulator
 
         private void numTeamsDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // show/hide team textbox and number of lines dropdown
+            // based on text in number of teams dropdown
             int numTeams = int.Parse(numTeamsDropdown.Text);
             if (numTeams == 2)
                 getTeamPanel3.Visible = getTeamPanel4.Visible = getTeamPanel5.Visible = getTeamPanel6.Visible = false;
@@ -263,34 +283,40 @@ namespace WC_Simulator
 
         private void textbox_Enter(object sender, EventArgs e)
         {
+            // when a textbox is selected, highlight all text
             TextBox textbox = sender as TextBox;
             textbox.SelectAll();
         }
 
         private void updown_Enter(object sender, EventArgs e)
         {
+            // when a numeric updown is selected, highlight the number
             NumericUpDown updown = sender as NumericUpDown;
             updown.Select(0, updown.Value.ToString().Length);
         }
 
         private void simBackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            // run the simulation calculation using a background worker
             BackgroundWorker worker = sender as BackgroundWorker;
             Simulate(worker);
         }
 
         private void simBackgroundWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
+            // update the progress bar value and message
             progressForm.Message = "Simulation progress: " + e.ProgressPercentage.ToString() + "%";
             progressForm.ProgressValue = e.ProgressPercentage;
         }
 
         private void simBackgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            // when the simulation calculation is complete, update the results in the results tab
             if (teams.Length == 2)
             {
-                resultsLabel1.Text = teams[0] + " wins " + places[0, 0] + " of " + numSimulations + " times (" + (places[0, 0] / numSimulations * 100.0) + "%)";
-                resultsLabel2.Text = teams[1] + " wins " + places[1, 0] + " of " + numSimulations + " times (" + (places[1, 0] / numSimulations * 100.0) + "%)";
+                double percent = (places[0, 0] * 100.0) / numSimulations;
+                resultsLabel1.Text = teams[0] + " wins " + places[0, 0] + " of " + numSimulations + " times (" + (places[0, 0] * 100.0 / numSimulations) + "%)";
+                resultsLabel2.Text = teams[1] + " wins " + places[1, 0] + " of " + numSimulations + " times (" + (places[1, 0] * 100.0 / numSimulations) + "%)";
             }
             else
             {
@@ -302,7 +328,7 @@ namespace WC_Simulator
                     for (int place = 0; place < teams.Length; place++)
                     {
                         double placeFinishes = places[i, place];
-                        double percent = placeFinishes / numSimulations * 100;
+                        double percent = placeFinishes * 100.0 / numSimulations;
                         resultsLabelPanel.Controls[labelNum].Text = "\tPlace " + (place + 1) + " - " + placeFinishes + " of " + numSimulations + " times (" + percent + "%)";
                         labelNum++;
                     }
@@ -318,6 +344,7 @@ namespace WC_Simulator
 
         private Boolean verifyTeamDataNotEmpty(TextBox textbox, ComboBox dropdown, int teamNumber)
         {
+            // verify that the team name and number of lines are not empty
             if (string.IsNullOrWhiteSpace(textbox.Text) || (string.IsNullOrEmpty(dropdown.Text)))
             {
                 MessageBox.Show("Team " + teamNumber + " is missing team name or number of lines",
@@ -331,7 +358,8 @@ namespace WC_Simulator
 
         private void Simulate(BackgroundWorker worker)
         {
-            simulator = new RunSimulator(teams, numLinesPerTeam, teamInfo, worker);
+            // runs the simulation calculation method based on the number of teams chosen
+            simulator = new RunSimulator(worker, teams, numLinesPerTeam, teamInfo, mustWinList);
             if (teams.Length == 2)
                 places = simulator.SimulateTwoTeams();
             else

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="gamesPlayedInfoLabel.Text" xml:space="preserve">
+    <value>Fill in the results of any games that have already been played. Games that are left at 0-0 will be considered not played yet. For the games that are not yet played, there is the option to choose a team from the dropdown at right so only the team chosen will win games in that matchup.</value>
+  </data>
   <metadata name="simBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

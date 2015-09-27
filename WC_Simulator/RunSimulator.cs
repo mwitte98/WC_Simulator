@@ -10,22 +10,27 @@ namespace WC_Simulator
     class RunSimulator
     {
         private int numSimulations = 1000000;
+        private BackgroundWorker worker;
         private string[] teams; // team names
         private int[] numLinesPerTeam; // number of lines for each team
-        private List<List<double[]>> teamInfo = new List<List<double[]>>(); // ai, exp, minutes of each line for each team
-        BackgroundWorker worker;
+        private List<List<double[]>> teamInfo; // ai, exp, minutes of each line for each team
+        private List<string> mustWinList; // if a team must win a matchup or either team can win
 
-        public RunSimulator(string[] teams, int[] numLinesPerTeam, List<List<double[]>> teamInfo, BackgroundWorker worker)
+        public RunSimulator(BackgroundWorker worker, string[] teams, int[] numLinesPerTeam, List<List<double[]>> teamInfo, List<string> mustWinList)
         {
+            this.worker = worker;
             this.teams = teams;
             this.numLinesPerTeam = numLinesPerTeam;
             this.teamInfo = teamInfo;
-            this.worker = worker;
+            this.mustWinList = mustWinList;
         }
 
         public int[,] SimulateTwoTeams()
         {
-            // Initialize team total based on AI, half exp, and minutes of each line
+            // This method is called when the number of teams chosen
+            // is 2 because standings don't need to be calculated.
+
+            // initialize team total based on AI, half exp, and minutes of each line
             double[] aiExpTotals = new double[teams.Length];
             for (int i = 0; i < teams.Length; i++)
             {
@@ -57,15 +62,18 @@ namespace WC_Simulator
             Random rand = new Random();
             int[,] wins = new int[2, 1];
 
+            // simulate a game between the 2 teams numSimulations times
             for (int simNum = 0; simNum < numSimulations; simNum++)
             {
+                // update progress bar
                 int progressPercent = 0;
                 if (simNum % 10000 == 0)
                 {
                     progressPercent = (simNum * 100) / numSimulations;
                     worker.ReportProgress(progressPercent);
                 }
-                // simulate a game between each team
+                
+                // get goals scored by each team for one game
                 int gaussian1 = GetGoalsScored(rand, avgGoals1, 1.59);
                 int gaussian2 = GetGoalsScored(rand, avgGoals2, 1.59);
                 while (gaussian1 == gaussian2)
@@ -74,6 +82,7 @@ namespace WC_Simulator
                     gaussian2 = GetGoalsScored(rand, avgGoals2, 1.59);
                 }
 
+                // add one to team that wins
                 if (gaussian1 > gaussian2)
                     wins[0, 0] += 1;
                 else
@@ -85,10 +94,12 @@ namespace WC_Simulator
 
         public int[,] SimulateGroup(List<Game> gamesPlayed)
         {
+            // This method is called when the number of teams chosen
+            // is 4 or 6 because standings do need to be calculated.
+
+            // initialize team total based on AI, half exp, and minutes of each line
             double[] aiExpTotals = new double[teams.Length];
             int[] teamNumbers = new int[teams.Length];
-
-            // Initialize team total based on AI, half exp, and minutes of each line
             for (int i = 0; i < teams.Length; i++)
             {
                 teamNumbers[i] = i;
@@ -100,15 +111,17 @@ namespace WC_Simulator
                 }
             }
 
+            // calculate average goals for both teams in each matchup
+            // based on ai/exp if the game hasn't already been played
             List<Matchup> matchups = new List<Matchup>();
             double avgGoals = 2.61;
+            int matchupNum = 0;
             for (int team1 = 0; team1 < teams.Length; team1++)
             {
                 for (int team2 = team1 + 1; team2 < teams.Length; team2++)
                 {
                     if (!gamesPlayed.Exists(game => game.team1 == team1 && game.team2 == team2))
                     {
-                        // calculate average goals for each team based on ai/exp
                         double difference1 = aiExpTotals[team1] - aiExpTotals[team2];
                         double difference2 = aiExpTotals[team2] - aiExpTotals[team1];
                         double avgGoals1;
@@ -124,14 +137,16 @@ namespace WC_Simulator
                             avgGoals2 = avgGoals + (difference2 / 100);
                         }
 
-                        matchups.Add(new Matchup(team1, team2, avgGoals1, avgGoals2, "Both"));
+                        matchups.Add(new Matchup(team1, team2, avgGoals1, avgGoals2, mustWinList[matchupNum]));
                     }
+                    matchupNum++;
                 }
             }
 
+            // run numSimulations simulations of each possible matchup, calculate
+            // the standings, and add the place of each team to the dictionary
             int[,] places = new int[teams.Length, teams.Length];
             Random rand = new Random();
-
             for (int simNum = 0; simNum < numSimulations; simNum++)
             {
                 int progressPercent = 0;
@@ -145,13 +160,17 @@ namespace WC_Simulator
                 // simulate a game between each team
                 foreach (Matchup matchup in matchups)
                 {
+                    int team1 = matchup.team1;
+                    int team2 = matchup.team2;
                     double avgGoals1 = matchup.avgGoals1;
                     double avgGoals2 = matchup.avgGoals2;
+
+                    // get random number of goals for each team
                     int gaussian1 = GetGoalsScored(rand, avgGoals1, 1.59);
                     int gaussian2 = GetGoalsScored(rand, avgGoals2, 1.59);
 
-                    // get new random goals scored for each team if they're the same
-                    if (matchup.resultType == "Both") //either team can win
+                    // get new random goals scored for each team if condition met
+                    if (matchup.resultType == "Neither") //either team can win
                     {
                         while (gaussian1 == gaussian2)
                         {
@@ -159,7 +178,7 @@ namespace WC_Simulator
                             gaussian2 = GetGoalsScored(rand, avgGoals2, 1.59);
                         }
                     }
-                    else if (matchup.resultType == "WinOnly") //only team1 can win
+                    else if (matchup.resultType == teams[team1]) //only team1 can win
                     {
                         while (gaussian1 <= gaussian2)
                         {
@@ -167,7 +186,7 @@ namespace WC_Simulator
                             gaussian2 = GetGoalsScored(rand, avgGoals2, 1.59);
                         }
                     }
-                    else if (matchup.resultType == "LoseOnly") //only team2 can win
+                    else if (matchup.resultType == teams[team2]) //only team2 can win
                     {
                         while (gaussian1 >= gaussian2)
                         {
@@ -176,24 +195,17 @@ namespace WC_Simulator
                         }
                     }
 
-                    games.Add(new Game(matchup.team1, matchup.team2, gaussian1, gaussian2));
+                    games.Add(new Game(team1, team2, gaussian1, gaussian2));
                 }
 
+                // get standings for this round of matchup simulations
                 List<int> sortedStandings = GetStandings(teams, teamNumbers, games);
+
+                // add place of each team to the dictionary
                 for (int place = 0; place < sortedStandings.Count; place++)
                 {
                     int team = sortedStandings[place];
                     places[team, place] += 1;
-                }
-            }
-
-            // output percentages of each team finishing in each place
-            for (int i = 0; i < teamNumbers.Length; i++)
-            {
-                for (int place = 0; place < teamNumbers.Length; place++)
-                {
-                    double placeFinishes = places[i, place];
-                    double percent = placeFinishes / numSimulations * 100;
                 }
             }
 
@@ -437,6 +449,7 @@ namespace WC_Simulator
 
         private int GetGoalsScored(Random rand, double mean, double stdDev)
         {
+            // get a random number of goals scored
             double u1 = rand.NextDouble();
             double u2 = rand.NextDouble();
             double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);

@@ -30,6 +30,7 @@ namespace WC_Simulator
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimulatorForm));
             this.numTeamsLabel = new System.Windows.Forms.Label();
             this.getTeamsContinueButton = new System.Windows.Forms.Button();
             this.numTeamsDropdown = new System.Windows.Forms.ComboBox();
@@ -390,6 +391,21 @@ namespace WC_Simulator
             this.rerunSimsButton = new System.Windows.Forms.Button();
             this.simBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.editGamesPlayedButton = new System.Windows.Forms.Button();
+            this.gamesPlayedDropdown1 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown2 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown3 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown4 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown5 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown6 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown7 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown8 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown9 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown10 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown11 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown12 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown13 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown14 = new System.Windows.Forms.ComboBox();
+            this.gamesPlayedDropdown15 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.getTeamsTab.SuspendLayout();
             this.getTeamPanel1.SuspendLayout();
@@ -4128,7 +4144,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedContinueButton.AutoSize = true;
             this.gamesPlayedContinueButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedContinueButton.Location = new System.Drawing.Point(168, 506);
+            this.gamesPlayedContinueButton.Location = new System.Drawing.Point(168, 552);
             this.gamesPlayedContinueButton.Name = "gamesPlayedContinueButton";
             this.gamesPlayedContinueButton.Size = new System.Drawing.Size(100, 34);
             this.gamesPlayedContinueButton.TabIndex = 49;
@@ -4138,13 +4154,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel1
             // 
+            this.gamesPlayedPanel1.Controls.Add(this.gamesPlayedDropdown1);
             this.gamesPlayedPanel1.Controls.Add(this.gamesPlayedTeam1Label1);
             this.gamesPlayedPanel1.Controls.Add(this.gamesPlayedTeam2Label1);
             this.gamesPlayedPanel1.Controls.Add(this.gamesPlayedTeam1Goals1);
             this.gamesPlayedPanel1.Controls.Add(this.gamesPlayedTeam2Goals1);
-            this.gamesPlayedPanel1.Location = new System.Drawing.Point(12, 26);
+            this.gamesPlayedPanel1.Location = new System.Drawing.Point(12, 72);
             this.gamesPlayedPanel1.Name = "gamesPlayedPanel1";
-            this.gamesPlayedPanel1.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel1.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel1.TabIndex = 25;
             this.gamesPlayedPanel1.Visible = false;
             // 
@@ -4152,7 +4169,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label1.AutoSize = true;
             this.gamesPlayedTeam1Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label1.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label1.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label1.Name = "gamesPlayedTeam1Label1";
             this.gamesPlayedTeam1Label1.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label1.TabIndex = 4;
@@ -4162,7 +4179,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label1.AutoSize = true;
             this.gamesPlayedTeam2Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label1.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label1.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label1.Name = "gamesPlayedTeam2Label1";
             this.gamesPlayedTeam2Label1.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label1.TabIndex = 5;
@@ -4171,7 +4188,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals1
             // 
             this.gamesPlayedTeam1Goals1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals1.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals1.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals1.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4185,7 +4202,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals1
             // 
             this.gamesPlayedTeam2Goals1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals1.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals1.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals1.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4198,13 +4215,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel2
             // 
+            this.gamesPlayedPanel2.Controls.Add(this.gamesPlayedDropdown2);
             this.gamesPlayedPanel2.Controls.Add(this.gamesPlayedTeam1Label2);
             this.gamesPlayedPanel2.Controls.Add(this.gamesPlayedTeam2Label2);
             this.gamesPlayedPanel2.Controls.Add(this.gamesPlayedTeam1Goals2);
             this.gamesPlayedPanel2.Controls.Add(this.gamesPlayedTeam2Goals2);
-            this.gamesPlayedPanel2.Location = new System.Drawing.Point(12, 58);
+            this.gamesPlayedPanel2.Location = new System.Drawing.Point(12, 104);
             this.gamesPlayedPanel2.Name = "gamesPlayedPanel2";
-            this.gamesPlayedPanel2.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel2.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel2.TabIndex = 26;
             this.gamesPlayedPanel2.Visible = false;
             // 
@@ -4212,7 +4230,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label2.AutoSize = true;
             this.gamesPlayedTeam1Label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label2.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label2.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label2.Name = "gamesPlayedTeam1Label2";
             this.gamesPlayedTeam1Label2.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label2.TabIndex = 4;
@@ -4222,7 +4240,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label2.AutoSize = true;
             this.gamesPlayedTeam2Label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label2.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label2.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label2.Name = "gamesPlayedTeam2Label2";
             this.gamesPlayedTeam2Label2.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label2.TabIndex = 5;
@@ -4231,7 +4249,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals2
             // 
             this.gamesPlayedTeam1Goals2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals2.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals2.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals2.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4245,7 +4263,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals2
             // 
             this.gamesPlayedTeam2Goals2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals2.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals2.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals2.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4258,13 +4276,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel3
             // 
+            this.gamesPlayedPanel3.Controls.Add(this.gamesPlayedDropdown3);
             this.gamesPlayedPanel3.Controls.Add(this.gamesPlayedTeam1Label3);
             this.gamesPlayedPanel3.Controls.Add(this.gamesPlayedTeam2Label3);
             this.gamesPlayedPanel3.Controls.Add(this.gamesPlayedTeam1Goals3);
             this.gamesPlayedPanel3.Controls.Add(this.gamesPlayedTeam2Goals3);
-            this.gamesPlayedPanel3.Location = new System.Drawing.Point(12, 90);
+            this.gamesPlayedPanel3.Location = new System.Drawing.Point(12, 136);
             this.gamesPlayedPanel3.Name = "gamesPlayedPanel3";
-            this.gamesPlayedPanel3.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel3.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel3.TabIndex = 27;
             this.gamesPlayedPanel3.Visible = false;
             // 
@@ -4272,7 +4291,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label3.AutoSize = true;
             this.gamesPlayedTeam1Label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label3.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label3.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label3.Name = "gamesPlayedTeam1Label3";
             this.gamesPlayedTeam1Label3.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label3.TabIndex = 4;
@@ -4282,7 +4301,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label3.AutoSize = true;
             this.gamesPlayedTeam2Label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label3.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label3.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label3.Name = "gamesPlayedTeam2Label3";
             this.gamesPlayedTeam2Label3.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label3.TabIndex = 5;
@@ -4291,7 +4310,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals3
             // 
             this.gamesPlayedTeam1Goals3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals3.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals3.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals3.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4305,7 +4324,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals3
             // 
             this.gamesPlayedTeam2Goals3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals3.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals3.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals3.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4318,13 +4337,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel4
             // 
+            this.gamesPlayedPanel4.Controls.Add(this.gamesPlayedDropdown4);
             this.gamesPlayedPanel4.Controls.Add(this.gamesPlayedTeam1Label4);
             this.gamesPlayedPanel4.Controls.Add(this.gamesPlayedTeam2Label4);
             this.gamesPlayedPanel4.Controls.Add(this.gamesPlayedTeam1Goals4);
             this.gamesPlayedPanel4.Controls.Add(this.gamesPlayedTeam2Goals4);
-            this.gamesPlayedPanel4.Location = new System.Drawing.Point(12, 122);
+            this.gamesPlayedPanel4.Location = new System.Drawing.Point(12, 168);
             this.gamesPlayedPanel4.Name = "gamesPlayedPanel4";
-            this.gamesPlayedPanel4.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel4.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel4.TabIndex = 28;
             this.gamesPlayedPanel4.Visible = false;
             // 
@@ -4332,7 +4352,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label4.AutoSize = true;
             this.gamesPlayedTeam1Label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label4.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label4.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label4.Name = "gamesPlayedTeam1Label4";
             this.gamesPlayedTeam1Label4.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label4.TabIndex = 4;
@@ -4342,7 +4362,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label4.AutoSize = true;
             this.gamesPlayedTeam2Label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label4.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label4.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label4.Name = "gamesPlayedTeam2Label4";
             this.gamesPlayedTeam2Label4.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label4.TabIndex = 5;
@@ -4351,7 +4371,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals4
             // 
             this.gamesPlayedTeam1Goals4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals4.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals4.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals4.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4365,7 +4385,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals4
             // 
             this.gamesPlayedTeam2Goals4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals4.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals4.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals4.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4378,13 +4398,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel5
             // 
+            this.gamesPlayedPanel5.Controls.Add(this.gamesPlayedDropdown5);
             this.gamesPlayedPanel5.Controls.Add(this.gamesPlayedTeam1Label5);
             this.gamesPlayedPanel5.Controls.Add(this.gamesPlayedTeam2Label5);
             this.gamesPlayedPanel5.Controls.Add(this.gamesPlayedTeam1Goals5);
             this.gamesPlayedPanel5.Controls.Add(this.gamesPlayedTeam2Goals5);
-            this.gamesPlayedPanel5.Location = new System.Drawing.Point(12, 154);
+            this.gamesPlayedPanel5.Location = new System.Drawing.Point(12, 200);
             this.gamesPlayedPanel5.Name = "gamesPlayedPanel5";
-            this.gamesPlayedPanel5.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel5.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel5.TabIndex = 29;
             this.gamesPlayedPanel5.Visible = false;
             // 
@@ -4392,7 +4413,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label5.AutoSize = true;
             this.gamesPlayedTeam1Label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label5.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label5.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label5.Name = "gamesPlayedTeam1Label5";
             this.gamesPlayedTeam1Label5.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label5.TabIndex = 4;
@@ -4402,7 +4423,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label5.AutoSize = true;
             this.gamesPlayedTeam2Label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label5.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label5.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label5.Name = "gamesPlayedTeam2Label5";
             this.gamesPlayedTeam2Label5.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label5.TabIndex = 5;
@@ -4411,7 +4432,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals5
             // 
             this.gamesPlayedTeam1Goals5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals5.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals5.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals5.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4425,7 +4446,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals5
             // 
             this.gamesPlayedTeam2Goals5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals5.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals5.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals5.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4438,13 +4459,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel6
             // 
+            this.gamesPlayedPanel6.Controls.Add(this.gamesPlayedDropdown6);
             this.gamesPlayedPanel6.Controls.Add(this.gamesPlayedTeam1Label6);
             this.gamesPlayedPanel6.Controls.Add(this.gamesPlayedTeam2Label6);
             this.gamesPlayedPanel6.Controls.Add(this.gamesPlayedTeam1Goals6);
             this.gamesPlayedPanel6.Controls.Add(this.gamesPlayedTeam2Goals6);
-            this.gamesPlayedPanel6.Location = new System.Drawing.Point(12, 186);
+            this.gamesPlayedPanel6.Location = new System.Drawing.Point(12, 232);
             this.gamesPlayedPanel6.Name = "gamesPlayedPanel6";
-            this.gamesPlayedPanel6.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel6.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel6.TabIndex = 30;
             this.gamesPlayedPanel6.Visible = false;
             // 
@@ -4452,7 +4474,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label6.AutoSize = true;
             this.gamesPlayedTeam1Label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label6.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label6.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label6.Name = "gamesPlayedTeam1Label6";
             this.gamesPlayedTeam1Label6.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label6.TabIndex = 4;
@@ -4462,7 +4484,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label6.AutoSize = true;
             this.gamesPlayedTeam2Label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label6.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label6.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label6.Name = "gamesPlayedTeam2Label6";
             this.gamesPlayedTeam2Label6.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label6.TabIndex = 5;
@@ -4471,7 +4493,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals6
             // 
             this.gamesPlayedTeam1Goals6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals6.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals6.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals6.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4485,7 +4507,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals6
             // 
             this.gamesPlayedTeam2Goals6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals6.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals6.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals6.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4498,13 +4520,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel7
             // 
+            this.gamesPlayedPanel7.Controls.Add(this.gamesPlayedDropdown7);
             this.gamesPlayedPanel7.Controls.Add(this.gamesPlayedTeam1Label7);
             this.gamesPlayedPanel7.Controls.Add(this.gamesPlayedTeam2Label7);
             this.gamesPlayedPanel7.Controls.Add(this.gamesPlayedTeam1Goals7);
             this.gamesPlayedPanel7.Controls.Add(this.gamesPlayedTeam2Goals7);
-            this.gamesPlayedPanel7.Location = new System.Drawing.Point(12, 218);
+            this.gamesPlayedPanel7.Location = new System.Drawing.Point(12, 264);
             this.gamesPlayedPanel7.Name = "gamesPlayedPanel7";
-            this.gamesPlayedPanel7.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel7.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel7.TabIndex = 31;
             this.gamesPlayedPanel7.Visible = false;
             // 
@@ -4512,7 +4535,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label7.AutoSize = true;
             this.gamesPlayedTeam1Label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label7.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label7.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label7.Name = "gamesPlayedTeam1Label7";
             this.gamesPlayedTeam1Label7.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label7.TabIndex = 4;
@@ -4522,7 +4545,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label7.AutoSize = true;
             this.gamesPlayedTeam2Label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label7.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label7.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label7.Name = "gamesPlayedTeam2Label7";
             this.gamesPlayedTeam2Label7.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label7.TabIndex = 5;
@@ -4531,7 +4554,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals7
             // 
             this.gamesPlayedTeam1Goals7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals7.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals7.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals7.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4545,7 +4568,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals7
             // 
             this.gamesPlayedTeam2Goals7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals7.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals7.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals7.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4558,13 +4581,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel8
             // 
+            this.gamesPlayedPanel8.Controls.Add(this.gamesPlayedDropdown8);
             this.gamesPlayedPanel8.Controls.Add(this.gamesPlayedTeam1Label8);
             this.gamesPlayedPanel8.Controls.Add(this.gamesPlayedTeam2Label8);
             this.gamesPlayedPanel8.Controls.Add(this.gamesPlayedTeam1Goals8);
             this.gamesPlayedPanel8.Controls.Add(this.gamesPlayedTeam2Goals8);
-            this.gamesPlayedPanel8.Location = new System.Drawing.Point(12, 250);
+            this.gamesPlayedPanel8.Location = new System.Drawing.Point(12, 296);
             this.gamesPlayedPanel8.Name = "gamesPlayedPanel8";
-            this.gamesPlayedPanel8.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel8.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel8.TabIndex = 32;
             this.gamesPlayedPanel8.Visible = false;
             // 
@@ -4572,7 +4596,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label8.AutoSize = true;
             this.gamesPlayedTeam1Label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label8.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label8.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label8.Name = "gamesPlayedTeam1Label8";
             this.gamesPlayedTeam1Label8.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label8.TabIndex = 4;
@@ -4582,7 +4606,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label8.AutoSize = true;
             this.gamesPlayedTeam2Label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label8.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label8.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label8.Name = "gamesPlayedTeam2Label8";
             this.gamesPlayedTeam2Label8.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label8.TabIndex = 5;
@@ -4591,7 +4615,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals8
             // 
             this.gamesPlayedTeam1Goals8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals8.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals8.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals8.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4605,7 +4629,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals8
             // 
             this.gamesPlayedTeam2Goals8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals8.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals8.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals8.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4618,13 +4642,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel9
             // 
+            this.gamesPlayedPanel9.Controls.Add(this.gamesPlayedDropdown9);
             this.gamesPlayedPanel9.Controls.Add(this.gamesPlayedTeam1Label9);
             this.gamesPlayedPanel9.Controls.Add(this.gamesPlayedTeam2Label9);
             this.gamesPlayedPanel9.Controls.Add(this.gamesPlayedTeam1Goals9);
             this.gamesPlayedPanel9.Controls.Add(this.gamesPlayedTeam2Goals9);
-            this.gamesPlayedPanel9.Location = new System.Drawing.Point(12, 282);
+            this.gamesPlayedPanel9.Location = new System.Drawing.Point(12, 328);
             this.gamesPlayedPanel9.Name = "gamesPlayedPanel9";
-            this.gamesPlayedPanel9.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel9.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel9.TabIndex = 33;
             this.gamesPlayedPanel9.Visible = false;
             // 
@@ -4632,7 +4657,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label9.AutoSize = true;
             this.gamesPlayedTeam1Label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label9.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label9.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label9.Name = "gamesPlayedTeam1Label9";
             this.gamesPlayedTeam1Label9.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label9.TabIndex = 4;
@@ -4642,7 +4667,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label9.AutoSize = true;
             this.gamesPlayedTeam2Label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label9.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label9.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label9.Name = "gamesPlayedTeam2Label9";
             this.gamesPlayedTeam2Label9.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label9.TabIndex = 5;
@@ -4651,7 +4676,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals9
             // 
             this.gamesPlayedTeam1Goals9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals9.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals9.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals9.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4665,7 +4690,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals9
             // 
             this.gamesPlayedTeam2Goals9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals9.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals9.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals9.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4678,13 +4703,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel10
             // 
+            this.gamesPlayedPanel10.Controls.Add(this.gamesPlayedDropdown10);
             this.gamesPlayedPanel10.Controls.Add(this.gamesPlayedTeam1Label10);
             this.gamesPlayedPanel10.Controls.Add(this.gamesPlayedTeam2Label10);
             this.gamesPlayedPanel10.Controls.Add(this.gamesPlayedTeam1Goals10);
             this.gamesPlayedPanel10.Controls.Add(this.gamesPlayedTeam2Goals10);
-            this.gamesPlayedPanel10.Location = new System.Drawing.Point(12, 314);
+            this.gamesPlayedPanel10.Location = new System.Drawing.Point(12, 360);
             this.gamesPlayedPanel10.Name = "gamesPlayedPanel10";
-            this.gamesPlayedPanel10.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel10.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel10.TabIndex = 34;
             this.gamesPlayedPanel10.Visible = false;
             // 
@@ -4692,7 +4718,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label10.AutoSize = true;
             this.gamesPlayedTeam1Label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label10.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label10.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label10.Name = "gamesPlayedTeam1Label10";
             this.gamesPlayedTeam1Label10.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label10.TabIndex = 4;
@@ -4702,7 +4728,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label10.AutoSize = true;
             this.gamesPlayedTeam2Label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label10.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label10.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label10.Name = "gamesPlayedTeam2Label10";
             this.gamesPlayedTeam2Label10.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label10.TabIndex = 5;
@@ -4711,7 +4737,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals10
             // 
             this.gamesPlayedTeam1Goals10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals10.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals10.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals10.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4725,7 +4751,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals10
             // 
             this.gamesPlayedTeam2Goals10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals10.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals10.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals10.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4738,13 +4764,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel11
             // 
+            this.gamesPlayedPanel11.Controls.Add(this.gamesPlayedDropdown11);
             this.gamesPlayedPanel11.Controls.Add(this.gamesPlayedTeam1Label11);
             this.gamesPlayedPanel11.Controls.Add(this.gamesPlayedTeam2Label11);
             this.gamesPlayedPanel11.Controls.Add(this.gamesPlayedTeam1Goals11);
             this.gamesPlayedPanel11.Controls.Add(this.gamesPlayedTeam2Goals11);
-            this.gamesPlayedPanel11.Location = new System.Drawing.Point(12, 346);
+            this.gamesPlayedPanel11.Location = new System.Drawing.Point(12, 392);
             this.gamesPlayedPanel11.Name = "gamesPlayedPanel11";
-            this.gamesPlayedPanel11.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel11.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel11.TabIndex = 35;
             this.gamesPlayedPanel11.Visible = false;
             // 
@@ -4752,7 +4779,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label11.AutoSize = true;
             this.gamesPlayedTeam1Label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label11.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label11.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label11.Name = "gamesPlayedTeam1Label11";
             this.gamesPlayedTeam1Label11.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label11.TabIndex = 4;
@@ -4762,7 +4789,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label11.AutoSize = true;
             this.gamesPlayedTeam2Label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label11.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label11.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label11.Name = "gamesPlayedTeam2Label11";
             this.gamesPlayedTeam2Label11.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label11.TabIndex = 5;
@@ -4771,7 +4798,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals11
             // 
             this.gamesPlayedTeam1Goals11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals11.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals11.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals11.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4785,7 +4812,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals11
             // 
             this.gamesPlayedTeam2Goals11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals11.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals11.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals11.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4798,13 +4825,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel12
             // 
+            this.gamesPlayedPanel12.Controls.Add(this.gamesPlayedDropdown12);
             this.gamesPlayedPanel12.Controls.Add(this.gamesPlayedTeam1Label12);
             this.gamesPlayedPanel12.Controls.Add(this.gamesPlayedTeam2Label12);
             this.gamesPlayedPanel12.Controls.Add(this.gamesPlayedTeam1Goals12);
             this.gamesPlayedPanel12.Controls.Add(this.gamesPlayedTeam2Goals12);
-            this.gamesPlayedPanel12.Location = new System.Drawing.Point(12, 378);
+            this.gamesPlayedPanel12.Location = new System.Drawing.Point(12, 424);
             this.gamesPlayedPanel12.Name = "gamesPlayedPanel12";
-            this.gamesPlayedPanel12.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel12.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel12.TabIndex = 36;
             this.gamesPlayedPanel12.Visible = false;
             // 
@@ -4812,7 +4840,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label12.AutoSize = true;
             this.gamesPlayedTeam1Label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label12.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label12.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label12.Name = "gamesPlayedTeam1Label12";
             this.gamesPlayedTeam1Label12.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label12.TabIndex = 4;
@@ -4822,7 +4850,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label12.AutoSize = true;
             this.gamesPlayedTeam2Label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label12.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label12.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label12.Name = "gamesPlayedTeam2Label12";
             this.gamesPlayedTeam2Label12.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label12.TabIndex = 5;
@@ -4831,7 +4859,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals12
             // 
             this.gamesPlayedTeam1Goals12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals12.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals12.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals12.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4845,7 +4873,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals12
             // 
             this.gamesPlayedTeam2Goals12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals12.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals12.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals12.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4858,13 +4886,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel13
             // 
+            this.gamesPlayedPanel13.Controls.Add(this.gamesPlayedDropdown13);
             this.gamesPlayedPanel13.Controls.Add(this.gamesPlayedTeam1Label13);
             this.gamesPlayedPanel13.Controls.Add(this.gamesPlayedTeam2Label13);
             this.gamesPlayedPanel13.Controls.Add(this.gamesPlayedTeam1Goals13);
             this.gamesPlayedPanel13.Controls.Add(this.gamesPlayedTeam2Goals13);
-            this.gamesPlayedPanel13.Location = new System.Drawing.Point(12, 410);
+            this.gamesPlayedPanel13.Location = new System.Drawing.Point(12, 456);
             this.gamesPlayedPanel13.Name = "gamesPlayedPanel13";
-            this.gamesPlayedPanel13.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel13.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel13.TabIndex = 37;
             this.gamesPlayedPanel13.Visible = false;
             // 
@@ -4872,7 +4901,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label13.AutoSize = true;
             this.gamesPlayedTeam1Label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label13.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label13.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label13.Name = "gamesPlayedTeam1Label13";
             this.gamesPlayedTeam1Label13.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label13.TabIndex = 4;
@@ -4882,7 +4911,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label13.AutoSize = true;
             this.gamesPlayedTeam2Label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label13.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label13.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label13.Name = "gamesPlayedTeam2Label13";
             this.gamesPlayedTeam2Label13.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label13.TabIndex = 5;
@@ -4891,7 +4920,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals13
             // 
             this.gamesPlayedTeam1Goals13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals13.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals13.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals13.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4905,7 +4934,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals13
             // 
             this.gamesPlayedTeam2Goals13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals13.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals13.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals13.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4918,13 +4947,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel14
             // 
+            this.gamesPlayedPanel14.Controls.Add(this.gamesPlayedDropdown14);
             this.gamesPlayedPanel14.Controls.Add(this.gamesPlayedTeam1Label14);
             this.gamesPlayedPanel14.Controls.Add(this.gamesPlayedTeam2Label14);
             this.gamesPlayedPanel14.Controls.Add(this.gamesPlayedTeam1Goals14);
             this.gamesPlayedPanel14.Controls.Add(this.gamesPlayedTeam2Goals14);
-            this.gamesPlayedPanel14.Location = new System.Drawing.Point(12, 442);
+            this.gamesPlayedPanel14.Location = new System.Drawing.Point(12, 488);
             this.gamesPlayedPanel14.Name = "gamesPlayedPanel14";
-            this.gamesPlayedPanel14.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel14.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel14.TabIndex = 38;
             this.gamesPlayedPanel14.Visible = false;
             // 
@@ -4932,7 +4962,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label14.AutoSize = true;
             this.gamesPlayedTeam1Label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label14.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label14.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label14.Name = "gamesPlayedTeam1Label14";
             this.gamesPlayedTeam1Label14.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label14.TabIndex = 4;
@@ -4942,7 +4972,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label14.AutoSize = true;
             this.gamesPlayedTeam2Label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label14.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label14.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label14.Name = "gamesPlayedTeam2Label14";
             this.gamesPlayedTeam2Label14.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label14.TabIndex = 5;
@@ -4951,7 +4981,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals14
             // 
             this.gamesPlayedTeam1Goals14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals14.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals14.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals14.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4965,7 +4995,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals14
             // 
             this.gamesPlayedTeam2Goals14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals14.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals14.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals14.Maximum = new decimal(new int[] {
             19,
             0,
@@ -4978,13 +5008,14 @@ namespace WC_Simulator
             // 
             // gamesPlayedPanel15
             // 
+            this.gamesPlayedPanel15.Controls.Add(this.gamesPlayedDropdown15);
             this.gamesPlayedPanel15.Controls.Add(this.gamesPlayedTeam1Label15);
             this.gamesPlayedPanel15.Controls.Add(this.gamesPlayedTeam2Label15);
             this.gamesPlayedPanel15.Controls.Add(this.gamesPlayedTeam1Goals15);
             this.gamesPlayedPanel15.Controls.Add(this.gamesPlayedTeam2Goals15);
-            this.gamesPlayedPanel15.Location = new System.Drawing.Point(12, 474);
+            this.gamesPlayedPanel15.Location = new System.Drawing.Point(12, 520);
             this.gamesPlayedPanel15.Name = "gamesPlayedPanel15";
-            this.gamesPlayedPanel15.Size = new System.Drawing.Size(436, 26);
+            this.gamesPlayedPanel15.Size = new System.Drawing.Size(612, 28);
             this.gamesPlayedPanel15.TabIndex = 39;
             this.gamesPlayedPanel15.Visible = false;
             // 
@@ -4992,7 +5023,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam1Label15.AutoSize = true;
             this.gamesPlayedTeam1Label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Label15.Location = new System.Drawing.Point(-3, 2);
+            this.gamesPlayedTeam1Label15.Location = new System.Drawing.Point(-3, 3);
             this.gamesPlayedTeam1Label15.Name = "gamesPlayedTeam1Label15";
             this.gamesPlayedTeam1Label15.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam1Label15.TabIndex = 4;
@@ -5002,7 +5033,7 @@ namespace WC_Simulator
             // 
             this.gamesPlayedTeam2Label15.AutoSize = true;
             this.gamesPlayedTeam2Label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Label15.Location = new System.Drawing.Point(265, 2);
+            this.gamesPlayedTeam2Label15.Location = new System.Drawing.Point(265, 3);
             this.gamesPlayedTeam2Label15.Name = "gamesPlayedTeam2Label15";
             this.gamesPlayedTeam2Label15.Size = new System.Drawing.Size(62, 20);
             this.gamesPlayedTeam2Label15.TabIndex = 5;
@@ -5011,7 +5042,7 @@ namespace WC_Simulator
             // gamesPlayedTeam1Goals15
             // 
             this.gamesPlayedTeam1Goals15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam1Goals15.Location = new System.Drawing.Point(153, 0);
+            this.gamesPlayedTeam1Goals15.Location = new System.Drawing.Point(153, 1);
             this.gamesPlayedTeam1Goals15.Maximum = new decimal(new int[] {
             19,
             0,
@@ -5025,7 +5056,7 @@ namespace WC_Simulator
             // gamesPlayedTeam2Goals15
             // 
             this.gamesPlayedTeam2Goals15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gamesPlayedTeam2Goals15.Location = new System.Drawing.Point(209, 0);
+            this.gamesPlayedTeam2Goals15.Location = new System.Drawing.Point(209, 1);
             this.gamesPlayedTeam2Goals15.Maximum = new decimal(new int[] {
             19,
             0,
@@ -5038,14 +5069,12 @@ namespace WC_Simulator
             // 
             // gamesPlayedInfoLabel
             // 
-            this.gamesPlayedInfoLabel.AutoSize = true;
             this.gamesPlayedInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gamesPlayedInfoLabel.Location = new System.Drawing.Point(8, 3);
             this.gamesPlayedInfoLabel.Name = "gamesPlayedInfoLabel";
-            this.gamesPlayedInfoLabel.Size = new System.Drawing.Size(835, 20);
+            this.gamesPlayedInfoLabel.Size = new System.Drawing.Size(960, 66);
             this.gamesPlayedInfoLabel.TabIndex = 1;
-            this.gamesPlayedInfoLabel.Text = "Fill in the results of any games that have already been played. Games that are le" +
-    "ft at 0-0 will be considered not played.";
+            this.gamesPlayedInfoLabel.Text = resources.GetString("gamesPlayedInfoLabel.Text");
             // 
             // resultsTab
             // 
@@ -5517,6 +5546,156 @@ namespace WC_Simulator
             this.editGamesPlayedButton.Text = "Edit Games Played";
             this.editGamesPlayedButton.UseVisualStyleBackColor = true;
             this.editGamesPlayedButton.Click += new System.EventHandler(this.editGamesPlayedButton_Click);
+            // 
+            // gamesPlayedDropdown1
+            // 
+            this.gamesPlayedDropdown1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown1.FormattingEnabled = true;
+            this.gamesPlayedDropdown1.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown1.Name = "gamesPlayedDropdown1";
+            this.gamesPlayedDropdown1.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown1.TabIndex = 50;
+            // 
+            // gamesPlayedDropdown2
+            // 
+            this.gamesPlayedDropdown2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown2.FormattingEnabled = true;
+            this.gamesPlayedDropdown2.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown2.Name = "gamesPlayedDropdown2";
+            this.gamesPlayedDropdown2.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown2.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown3
+            // 
+            this.gamesPlayedDropdown3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown3.FormattingEnabled = true;
+            this.gamesPlayedDropdown3.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown3.Name = "gamesPlayedDropdown3";
+            this.gamesPlayedDropdown3.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown3.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown4
+            // 
+            this.gamesPlayedDropdown4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown4.FormattingEnabled = true;
+            this.gamesPlayedDropdown4.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown4.Name = "gamesPlayedDropdown4";
+            this.gamesPlayedDropdown4.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown4.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown5
+            // 
+            this.gamesPlayedDropdown5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown5.FormattingEnabled = true;
+            this.gamesPlayedDropdown5.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown5.Name = "gamesPlayedDropdown5";
+            this.gamesPlayedDropdown5.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown5.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown6
+            // 
+            this.gamesPlayedDropdown6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown6.FormattingEnabled = true;
+            this.gamesPlayedDropdown6.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown6.Name = "gamesPlayedDropdown6";
+            this.gamesPlayedDropdown6.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown6.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown7
+            // 
+            this.gamesPlayedDropdown7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown7.FormattingEnabled = true;
+            this.gamesPlayedDropdown7.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown7.Name = "gamesPlayedDropdown7";
+            this.gamesPlayedDropdown7.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown7.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown8
+            // 
+            this.gamesPlayedDropdown8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown8.FormattingEnabled = true;
+            this.gamesPlayedDropdown8.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown8.Name = "gamesPlayedDropdown8";
+            this.gamesPlayedDropdown8.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown8.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown9
+            // 
+            this.gamesPlayedDropdown9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown9.FormattingEnabled = true;
+            this.gamesPlayedDropdown9.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown9.Name = "gamesPlayedDropdown9";
+            this.gamesPlayedDropdown9.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown9.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown10
+            // 
+            this.gamesPlayedDropdown10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown10.FormattingEnabled = true;
+            this.gamesPlayedDropdown10.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown10.Name = "gamesPlayedDropdown10";
+            this.gamesPlayedDropdown10.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown10.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown11
+            // 
+            this.gamesPlayedDropdown11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown11.FormattingEnabled = true;
+            this.gamesPlayedDropdown11.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown11.Name = "gamesPlayedDropdown11";
+            this.gamesPlayedDropdown11.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown11.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown12
+            // 
+            this.gamesPlayedDropdown12.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown12.FormattingEnabled = true;
+            this.gamesPlayedDropdown12.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown12.Name = "gamesPlayedDropdown12";
+            this.gamesPlayedDropdown12.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown12.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown13
+            // 
+            this.gamesPlayedDropdown13.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown13.FormattingEnabled = true;
+            this.gamesPlayedDropdown13.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown13.Name = "gamesPlayedDropdown13";
+            this.gamesPlayedDropdown13.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown13.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown14
+            // 
+            this.gamesPlayedDropdown14.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown14.FormattingEnabled = true;
+            this.gamesPlayedDropdown14.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown14.Name = "gamesPlayedDropdown14";
+            this.gamesPlayedDropdown14.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown14.TabIndex = 51;
+            // 
+            // gamesPlayedDropdown15
+            // 
+            this.gamesPlayedDropdown15.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gamesPlayedDropdown15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gamesPlayedDropdown15.FormattingEnabled = true;
+            this.gamesPlayedDropdown15.Location = new System.Drawing.Point(442, 0);
+            this.gamesPlayedDropdown15.Name = "gamesPlayedDropdown15";
+            this.gamesPlayedDropdown15.Size = new System.Drawing.Size(170, 28);
+            this.gamesPlayedDropdown15.TabIndex = 51;
             // 
             // SimulatorForm
             // 
@@ -6097,6 +6276,21 @@ namespace WC_Simulator
         private Label gamesPlayedTeam2Label1;
         private Button gamesPlayedContinueButton;
         private Button editGamesPlayedButton;
+        private ComboBox gamesPlayedDropdown1;
+        private ComboBox gamesPlayedDropdown2;
+        private ComboBox gamesPlayedDropdown3;
+        private ComboBox gamesPlayedDropdown4;
+        private ComboBox gamesPlayedDropdown5;
+        private ComboBox gamesPlayedDropdown6;
+        private ComboBox gamesPlayedDropdown7;
+        private ComboBox gamesPlayedDropdown8;
+        private ComboBox gamesPlayedDropdown9;
+        private ComboBox gamesPlayedDropdown10;
+        private ComboBox gamesPlayedDropdown11;
+        private ComboBox gamesPlayedDropdown12;
+        private ComboBox gamesPlayedDropdown13;
+        private ComboBox gamesPlayedDropdown14;
+        private ComboBox gamesPlayedDropdown15;
     }
 }
 
